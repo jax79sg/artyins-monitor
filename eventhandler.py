@@ -9,7 +9,7 @@ class ReportEventHandler():
 
     def create_job(srcpath):
         filename=srcpath.split("/")[-1]
-        DATA=[]
+        DATA={"filename":filename}
         r = requests.post(url = config.CREATEJOB_URL, json  = DATA)
         print(r)
         # extracting results in json format
