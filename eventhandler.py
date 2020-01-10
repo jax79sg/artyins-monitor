@@ -7,7 +7,9 @@ class ReportEventHandler():
     def markprocessing(filename):
         shutil.move(config.NEW_PATH+filename,config.PROCESSING_PATH+filename)        
 
-    def create_job(filename):
+    def create_job(srcpath):
+        filename=srcpath.split("/")[-1]
+        DATA=[]
         r = requests.post(url = config.CREATEJOB_URL, json  = DATA)
         print(r)
         # extracting results in json format
@@ -21,12 +23,13 @@ class ReportEventHandler():
     def on_created(self, event):
 
         what = 'directory' if event.is_directory else 'file'
-        if what == 'file':
+        if what == 'file':      
            #Send new job create, if success move file to processing folder
+           self.create_job(event.src_path)
         logging.info("Created %s: %s", what, event.src_path)
 
     def on_deleted(self, event):
         pass
 
     def on_modified(self, event):
-        pass
+        self.on_created(event) 
