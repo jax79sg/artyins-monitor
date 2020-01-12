@@ -1,15 +1,17 @@
 import sys
 import time
 import logging
+from eventhandler import ReportEventHandler
 from watchdog.observers import Observer
-from watchdog.events import LoggingEventHandler
+from config import MonitorConfig
 
 if __name__ == "__main__":
+    config = MonitorConfig()
     logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s - %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S')
     path = sys.argv[1] if len(sys.argv) > 1 else '.'
-    event_handler = LoggingEventHandler()
+    event_handler = ReportEventHandler(config)
     observer = Observer()
     observer.schedule(event_handler, path, recursive=True)
     observer.start()

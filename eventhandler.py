@@ -1,16 +1,20 @@
 import requests
 import os
 import shutil
+from watchdog.events import FileSystemEventHandler
+class ReportEventHandler(FileSystemEventHandler):
 
-class ReportEventHandler():
+    def __init__(self,config):
+        self.config=config
+        super().__init__()
 
-    def markprocessing(filename):
+    def markprocessing(self,filename):
         shutil.move(config.NEW_PATH+filename,config.PROCESSING_PATH+filename)        
 
-    def create_job(srcpath):
+    def create_job(self,srcpath):
         filename=srcpath.split("/")[-1]
         DATA={"filename":filename}
-        r = requests.post(url = config.CREATEJOB_URL, json  = DATA)
+        r = requests.post(url = self.config.CREATEJOB_URL, json  = DATA)
         print(r)
         # extracting results in json format
         data = r.json()
