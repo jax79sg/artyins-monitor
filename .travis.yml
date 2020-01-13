@@ -12,8 +12,8 @@ branches:
   - stable
 
 before_install:
-  - apt update
-  - apt install  libyaml-dev 
+  - sudo apt update
+  - sudo apt install  libyaml-dev 
 install:
   - pip install -r requirements.txt
 
