@@ -1,5 +1,8 @@
 class MonitorConfig():
     
     DATAPATH="/shareddata/new"
-    CREATEJOB_URL="http://jobservice:9891/create_job"
+    PROCESSINGPATH="/shareddata/processing"
+    SUCCESSPATH="/shareddata/success"
+    FAILPATH="/shareddata/fail"
+    CREATEJOB_URL="http://jobsvc:9891/create_job"
 
