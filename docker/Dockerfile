@@ -10,4 +10,4 @@ RUN mkdir /logs && \
     ./setup_prerequisites.sh
 WORKDIR artyins-monitor
 ENTRYPOINT ["python3","monitor.py","&"]
-
+CMD ["/bin/bash"]
