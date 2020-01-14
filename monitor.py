@@ -13,10 +13,11 @@ if __name__ == "__main__":
     ],
                         format='%(asctime)s - %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S')
-    path = sys.argv[1] if len(sys.argv) > 1 else '.'
+   
+    path = config.DATAPATH
     event_handler = ReportEventHandler(config)
     observer = Observer()
-    observer.schedule(event_handler, path, recursive=True)
+    observer.schedule(event_handler, path, recursive=False)
     observer.start()
     try:
         while True:
