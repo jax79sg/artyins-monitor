@@ -15,6 +15,7 @@ if __name__ == "__main__":
                         datefmt='%Y-%m-%d %H:%M:%S')
    
     path = config.DATAPATH
+    logging.info("DATAPATH is {}".format(path))
     event_handler = ReportEventHandler(config)
     observer = Observer()
     observer.schedule(event_handler, path, recursive=False)
