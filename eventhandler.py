@@ -1,15 +1,17 @@
 import requests
 import os
 import shutil
+import logging
 from watchdog.events import FileSystemEventHandler
 class ReportEventHandler(FileSystemEventHandler):
 
     def __init__(self,config,logging):
         self.config=config
-        self.logging.basicConfig(level=logging.INFO,handlers=[
-        self.logging.FileHandler("{0}/{1}.log".format("/logs", "monitor")),
-        self.logging.StreamHandler()
+        logging.basicConfig(level=logging.INFO,handlers=[
+        logging.FileHandler("{0}/{1}.log".format("/logs", "eventhandler")),
+        logging.StreamHandler()
         ],format='%(asctime)s - %(message)s',datefmt='%Y-%m-%d %H:%M:%S')
+        self.logging=logging
         super().__init__()
 
     def markprocessing(self,filename):
