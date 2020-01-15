@@ -16,7 +16,7 @@ if __name__ == "__main__":
    
     path = config.DATAPATH
     logging.info("DATAPATH is {}".format(path))
-    event_handler = ReportEventHandler(configi, logging)
+    event_handler = ReportEventHandler(config, logging)
     observer = Observer()
     observer.schedule(event_handler, path, recursive=False)
     observer.start()

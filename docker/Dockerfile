@@ -9,4 +9,4 @@ RUN mkdir /logs && \
     pip install -r requirements.txt && \
     ./setup_prerequisites.sh
 WORKDIR artyins-monitor
-ENTRYPOINT ["python3","monitor.py"]
+#ENTRYPOINT ["python3","monitor.py"]
