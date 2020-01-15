@@ -6,7 +6,10 @@ class ReportEventHandler(FileSystemEventHandler):
 
     def __init__(self,config,logging):
         self.config=config
-        self.logging = logging
+        self.logging.basicConfig(level=logging.INFO,handlers=[
+        self.logging.FileHandler("{0}/{1}.log".format("/logs", "monitor")),
+        self.logging.StreamHandler()
+        ],format='%(asctime)s - %(message)s',datefmt='%Y-%m-%d %H:%M:%S')
         super().__init__()
 
     def markprocessing(self,filename):
@@ -46,6 +49,7 @@ class ReportEventHandler(FileSystemEventHandler):
            self.logging.info("New file %s: %s", what, event.src_path)
            self.markprocessing(filename)
            #Send new job create, if success move file to processing folder
+           self.logging.info("Sending to new job")
            self.create_job(filename)
            self.logging.info("Sent to create new job")
 

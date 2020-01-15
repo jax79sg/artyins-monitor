@@ -7,14 +7,13 @@ from config import MonitorConfig
 
 if __name__ == "__main__":
     config = MonitorConfig()
+    path = config.DATAPATH
     logging.basicConfig(level=logging.INFO,handlers=[
         logging.FileHandler("{0}/{1}.log".format("/logs", "monitor")),
         logging.StreamHandler()
     ],
                         format='%(asctime)s - %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S')
-   
-    path = config.DATAPATH
     logging.info("DATAPATH is {}".format(path))
     event_handler = ReportEventHandler(config, logging)
     observer = Observer()
