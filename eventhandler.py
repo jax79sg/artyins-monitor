@@ -10,27 +10,27 @@ class ReportEventHandler(FileSystemEventHandler):
         super().__init__()
 
     def markprocessing(self,filename):
-        self.logging("Moved %s to PROCESSING", filename)
+        self.logging.info("Moved %s to PROCESSING", filename)
         shutil.move(self.config.DATAPATH+filename,self.config.PROCESSINGPATH+filename)        
 
     def marksuccess(self, filename):
-        self.logging("Moved %s to SUCCESS", filename)
+        self.logging.info("Moved %s to SUCCESS", filename)
         shutil.move(self.config.PROCESSINGPATH+filename, self.config.SUCCESSPATH+filename)
 
     def markfail(self, filename):
-        self.logging("Moved $s to FAILED", filename)
+        self.logging.info("Moved $s to FAILED", filename)
         shutil.move(self.config.SUCCESSPATH+filename, self.config.FAILPATH+filename)
 
     def create_job(self,filename):
         DATA={"filename":filename}
-        self.logging("Sending a new job with %s to %s", filename, self.config.CREATEJOB_URL)
+        self.logging.info("Sending a new job with %s to %s", filename, self.config.CREATEJOB_URL)
         r = requests.post(url = self.config.CREATEJOB_URL, json  = DATA)
         # extracting results in json format
         try:
            data = r.json()
-           self.logging("Reply received %s", data)
+           self.logging.info("Reply received %s", data)
         except:
-           self.logging("An error has occurred during CREATE JOB call")
+           self.logging.info("An error has occurred during CREATE JOB call")
            markfail(filename)
 
         if data['message']=='ok':
