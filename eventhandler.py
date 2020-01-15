@@ -15,16 +15,16 @@ class ReportEventHandler(FileSystemEventHandler):
         super().__init__()
 
     def markprocessing(self,filename):
-        self.logging.info("Moved %s to PROCESSING", filename)
+        self.logging.info("Moving %s to PROCESSING", filename)
         shutil.move(self.config.DATAPATH+filename,self.config.PROCESSINGPATH+filename)        
 
     def marksuccess(self, filename):
-        self.logging.info("Moved %s to SUCCESS", filename)
+        self.logging.info("Moving %s to SUCCESS", filename)
         shutil.move(self.config.PROCESSINGPATH+filename, self.config.SUCCESSPATH+filename)
 
     def markfail(self, filename):
-        self.logging.info("Moved $s to FAILED", filename)
-        shutil.move(self.config.SUCCESSPATH+filename, self.config.FAILPATH+filename)
+        self.logging.info("Moving $s to FAILED", filename)
+        shutil.move(self.config.PROCESSINGPATH+filename, self.config.FAILPATH+filename)
 
     def create_job(self,filename):
         DATA={"filename":filename}
@@ -36,7 +36,7 @@ class ReportEventHandler(FileSystemEventHandler):
            self.logging.info("Reply received %s", data)
         except:
            self.logging.info("An error has occurred during CREATE JOB call")
-           markfail(filename)
+           self.markfail(filename)
 
         if data['message']=='ok':
             marksucess(filename)
