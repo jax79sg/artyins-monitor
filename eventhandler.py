@@ -10,13 +10,13 @@ class ReportEventHandler(FileSystemEventHandler):
         super().__init__()
 
     def markprocessing(self,filename):
-        shutil.move(config.DATAPATH+filename,config.PROCESSINGPATH+filename)        
+        shutil.move(self.config.DATAPATH+filename,self.config.PROCESSINGPATH+filename)        
 
     def marksuccess(self, filename):
-        shutil.move(config.PROCESSINGPATH+filename, config.SUCCESSPATH+filename)
+        shutil.move(self.config.PROCESSINGPATH+filename, self.config.SUCCESSPATH+filename)
 
     def markfail(self, filename):
-        shutil.move(config.SUCCESSPATH+filename, config.FAILPATH+filename)
+        shutil.move(self.config.SUCCESSPATH+filename, self.config.FAILPATH+filename)
 
     def create_job(self,filename):
         DATA={"filename":filename}
