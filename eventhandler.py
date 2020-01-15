@@ -27,7 +27,7 @@ class ReportEventHandler(FileSystemEventHandler):
         shutil.move(self.config.PROCESSINGPATH+filename, self.config.FAILPATH+filename)
 
     def create_job(self,filename):
-        DATA={"filename":filename}
+        DATA=[{"filename":filename}]
         self.logging.info("Sending a new job with %s to %s", filename, self.config.CREATEJOB_URL)
         r = requests.post(url = self.config.CREATEJOB_URL, json  = DATA)
         # extracting results in json format
