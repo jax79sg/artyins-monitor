@@ -35,10 +35,10 @@ class ReportEventHandler(FileSystemEventHandler):
         pass
 
     def on_created(self, event):
-        self.logging.info("Created %s: %s", what, event.src_path)
         filename=event.src_path.split("/")[-1]
         what = 'directory' if event.is_directory else 'file'
         if what == 'file':      
+           self.logging.info("New file %s: %s", what, event.src_path)
            self.markprocessing(filename)
            self.logging.info("Moved file")
            #Send new job create, if success move file to processing folder
