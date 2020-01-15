@@ -8,7 +8,7 @@ from config import MonitorConfig
 if __name__ == "__main__":
     config = MonitorConfig()
     logging.basicConfig(level=logging.INFO,handlers=[
-        logging.FileHandler("{0}/{1}.log".format(".", "log")),
+        logging.FileHandler("{0}/{1}.log".format("/logs", "monitor")),
         logging.StreamHandler()
     ],
                         format='%(asctime)s - %(message)s',
