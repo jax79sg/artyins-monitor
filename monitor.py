@@ -1,8 +1,6 @@
 import sys
 import time
 import logging
-from eventhandler import ReportEventHandler
-from watchdog.observers import Observer
 from config import MonitorConfig
 import glob
 
