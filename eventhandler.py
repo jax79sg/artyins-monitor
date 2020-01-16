@@ -52,6 +52,18 @@ class ReportEventHandler(FileSystemEventHandler):
            self.markprocessing(filename)
            #Send new job create, if success move file to processing folder
            self.logging.info("Sending to new job")
+ def markprocessing(self,filename):
+        self.logging.info("Moving %s to PROCESSING", filename)
+        shutil.move(self.config.DATAPATH+filename,self.config.PROCESSINGPATH+file
+
+    def marksuccess(self, filename):
+        self.logging.info("Moving %s to SUCCESS", filename)
+        shutil.move(self.config.PROCESSINGPATH+filename, self.config.SUCCESSPATH+
+
+    def markfail(self, filename):
+        self.logging.info("Moving $s to FAILED", filename)
+        shutil.move(self.config.PROCESSINGPATH+filename, self.config.FAILPATH+fil
+
            self.create_job(filename)
            self.logging.info("Sent to create new job")
 
