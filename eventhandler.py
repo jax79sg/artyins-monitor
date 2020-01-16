@@ -38,7 +38,7 @@ class ReportEventHandler(FileSystemEventHandler):
            self.logging.info("An error has occurred during CREATE JOB call")
            self.markfail(filename)
 
-        if data['message']=='ok':
+        if data['results']=='ok':
             marksucess(filename)
 
     def on_moved(self, event):
