@@ -39,7 +39,7 @@ class ReportEventHandler(FileSystemEventHandler):
            self.markfail(filename)
 
         if data['results']=='ok':
-            marksucess(filename)
+           self.marksucess(filename)
 
     def on_moved(self, event):
         pass
