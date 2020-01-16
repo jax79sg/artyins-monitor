@@ -39,7 +39,7 @@ def create_job(filename):
            markfail(filename)
 
         if data['results']=='"ok"':
-            marksucess(filename)
+            marksuccess(filename)
 
 if __name__ == "__main__":
     config = MonitorConfig()
