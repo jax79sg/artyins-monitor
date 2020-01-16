@@ -38,7 +38,7 @@ def create_job(filename):
            logging.info("An error has occurred during CREATE JOB call")
            markfail(filename)
 
-        if data['results']=='ok':
+        if data['results']=='"ok"':
             marksucess(filename)
 
 if __name__ == "__main__":
