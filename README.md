@@ -1,11 +1,11 @@
 
-# Extraction Service For artyins deployment architecture
+# Monitor For artyins deployment architecture
 This is a submodule for the artyins architecture. Please refer to [main module](https://github.com/jax79sg/artyins) for full build details.
 
-[![Build Status](https://travis-ci.com/jax79sg/artyins-extractionservice.svg?branch=master)](https://travis-ci.com/jax79sg/artyins-extractionservice)
-[![Container Status](https://quay.io/repository/jax79sg/artyins-extractionservice/status)](https://quay.io/repository/jax79sg/artyins-extractionservice)
+[![Build Status](https://travis-ci.com/jax79sg/artyins-monitor.svg?branch=master)](https://travis-ci.com/jax79sg/artyins-extractionservice)
+[![Container Status](https://quay.io/repository/jax79sg/artyins-monitor/status)](https://quay.io/repository/jax79sg/artyins-extractionservice)
 
-Refer to [Trello Task list](https://trello.com/c/mKnW1fgx) for running tasks.
+Refer to [Trello Task list](https://trello.com/c/ABdSKU5b) for running tasks.
 
 ---
 
@@ -18,10 +18,8 @@ Refer to [Trello Task list](https://trello.com/c/mKnW1fgx) for running tasks.
 ---
 
 ## Usage
-The extraction service can be called by a HTTP POST call. Primarily on http://webserverip:port/extract_content. It expects a json of the following format
-```python
-[{'filename':'file01.pdf',},{'filename':'file02.pdf'}]
-```
+The Monitor simply monitor a folder and call a designated endpoint when detected files in folder.
+
 ### config.py
 The configuration file will indicate the paths and URL call endpoints.
 ```python
