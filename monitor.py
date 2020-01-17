@@ -35,11 +35,12 @@ def create_job(filename):
            data = r.json()
            logging.info("Reply received %s", data)
         except:
-           logging.info("An error has occurred during CREATE JOB call")
-           markfail(filename)
+           logging.error("An error has occurred during CREATE JOB call")
 
         if data['results']=='"ok"':
             marksuccess(filename)
+        else:
+            markfail(filename)
 
 if __name__ == "__main__":
     config = MonitorConfig()
