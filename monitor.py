@@ -23,7 +23,7 @@ def marksuccess(filename):
         shutil.move(config.PROCESSINGPATH+filename, config.SUCCESSPATH+filename)
 
 def markfail( filename):
-        logging.info("Moving $s to FAILED", filename)
+        logging.info("Moving %s to FAILED", filename)
         shutil.move(config.PROCESSINGPATH+filename, config.FAILPATH+filename)
 
 def create_job(filename):
