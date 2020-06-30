@@ -1,4 +1,5 @@
 import sys
+import json
 import time
 import logging
 from config import MonitorConfig
@@ -21,11 +22,29 @@ def markprocessing(filename):
 def marksuccess(filename):
         logging.info("Moving %s to SUCCESS", filename)
         shutil.move(config.PROCESSINGPATH+filename, config.SUCCESSPATH+filename)
+        data = {"filename":filename,"status":"SUCCESS"}
+        datajson=json.dumps(data)
+        r = requests.post(url = config.SETREPORTSTATUS_URL, json  = datajson)
+        try:
+           data = r.json()
+           logging.info("Reply received %s", data)
+        except:
+           logging.error("An error has occurred during MARKSUCCESSdb call")
+
 
 def markfail( filename):
         logging.info("Moving %s to FAILED", filename)
         shutil.move(config.PROCESSINGPATH+filename, config.FAILPATH+filename)
+        data = {"filename":filename,"status":"FAILED"}
+        datajson=json.dumps(data)
+        r = requests.post(url = config.SETREPORTSTATUS_URL, json  = datajson)
+        try:
+           data = r.json()
+           logging.info("Reply received %s", data)
+        except:
+           logging.error("An error has occurred during MARKFAILdb call")
 
+ 
 def create_job(filename):
         DATA=[{"filename":filename}]
         logging.info("Sending a new job with %s to %s", filename, config.CREATEJOB_URL)
